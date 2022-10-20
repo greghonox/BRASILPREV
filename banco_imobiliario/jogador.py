@@ -10,19 +10,26 @@ class TipoJogar(Enum):
     
     def comprar_impulsivo(self) -> bool:
         """Implementa o tipo de compra"""
+        print(f'tipo compra cauteloso: True')
         return True
 
     def comprar_cauteloso(self, reserva: int) -> bool:
         """Implementa o tipo de compra"""
-        return reserva >= self.cauteloso.value['compra']        
+        resposta = reserva >= self.cauteloso.value['compra']        
+        print(f'tipo compra cauteloso: {resposta}')
+        return resposta
 
     def comprar_aleatorio(self) -> bool:
         """Implementa o tipo de compra"""
-        return choice([True, False])
+        resposta = choice([True, False])
+        print(f'tipo compra aleatorio: {resposta}')
+        return resposta
 
     def comprar_exigente(self, valor_aluguel: int) -> bool:
         """Implementa o tipo de compra"""
-        return valor_aluguel >= self.exigente.value['compra']
+        resposta = valor_aluguel >= self.exigente.value['compra']
+        print(f'tipo compra exigente: {resposta}')
+        return resposta
 
             
 class Jogador:
@@ -32,18 +39,17 @@ class Jogador:
         """
         self.tipo_jogador = tipo_jogador
         self.nome_jogador = nome_jogador
-    
-    def comprar(self) -> None:
-        """
-            Realiaza a compra conforme o tipo.
-        """
-        
-    @classmethod
-    def pular(cls, numero_dado: int) -> None:
+
+    def pular(self, numero_dado: int) -> int:
         """
             Faz pulo de casa conforme numero sorteado pelo dado.
         """
+        print(f'{self} pulando: {numero_dado} casas')
+        return numero_dado
         
     def __str__(self) -> str:
         return 'Jogador: {} Tipo: {}'.format(self.nome_jogador, 
                                         self.tipo_jogador.value['tipo'])
+        
+    def __repr__(self) -> str:
+        return super().__str__()
