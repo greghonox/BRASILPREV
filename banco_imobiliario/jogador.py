@@ -12,9 +12,9 @@ class TipoJogar(Enum):
         print(f'tipo compra cauteloso: True')
         return True
 
-    def comprar_cauteloso(self, reserva: int) -> bool:
+    def comprar_cauteloso(self, reserva: int, saldo_atual: int) -> bool:
         """Implementa o tipo de compra"""
-        resposta = reserva <= self.cauteloso.value['compra']        
+        resposta = (self.cauteloso.value['compra'] - reserva) <= saldo_atual
         print(f'tipo compra cauteloso: {resposta}')
         return resposta
 
@@ -57,10 +57,10 @@ class Jogador:
         print(f'Saldo insuficiente {self}')
         return False
 
-    def comprar_cauteloso(self, cidade: CidadeImobiliaria) -> bool:
+    def comprar_cauteloso(self, cidade: CidadeImobiliaria, saldo_atual: int) -> bool:
         reserva = cidade.propriedade_atual['venda']
         if self.saldo_atual >= reserva:
-            if self.tipo_jogador.comprar_cauteloso(reserva):
+            if self.tipo_jogador.comprar_cauteloso(reserva, saldo_atual):
                 self.saldo_atual = self.saldo_atual - reserva
                 print(f'Compra feita no valor {reserva} {self}')
                 return True
@@ -73,6 +73,7 @@ class Jogador:
         valor_compra = cidade.propriedade_atual['venda']
         if self.saldo_atual >= valor_compra:
             if self.tipo_jogador.comprar_aleatorio():
+                cidade.propriedade_atual['vendida'] = True
                 self.saldo_atual = self.saldo_atual - valor_compra
                 print(f'Compra feita no valor {valor_compra} {self}')
                 return True

@@ -15,7 +15,7 @@ class TestTipoJogador(TestCase):
         reserva = 80
         tipo_jogador = TipoJogar.cauteloso
         self.assertEqual(tipo_jogador.value['compra'], 80)
-        self.assertTrue(tipo_jogador.comprar_cauteloso(reserva))
+        self.assertTrue(tipo_jogador.comprar_cauteloso(reserva, 300))
 
     def test_compra_aleatorio(self) -> None:
         """Como o aleatorio compra"""

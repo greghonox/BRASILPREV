@@ -80,7 +80,7 @@ class TestJogador(TestCase):
         
 
 def FAKE_CIDADE(alugar,
-                venda):
+                venda) -> MagicMock:
     cidade_mock = MagicMock()
     cidade_mock.propriedade_atual = {'propriedade': 1,
                             'alugar': alugar, 'venda': venda}
