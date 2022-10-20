@@ -1,6 +1,4 @@
-from random import choice, randint
-from typing import Dict
-from enum import Enum
+from banco_imobiliario.__init__ import *
 
 class TipoJogar(Enum):
     impulsivo: Dict = {'tipo': 'impulsivo', 'compra': 100}
@@ -37,8 +35,9 @@ class Jogador:
         """
             Aqui esta o jogador.
         """
-        self.tipo_jogador = tipo_jogador
-        self.nome_jogador = nome_jogador
+        self.tipo_jogador: TipoJogar = tipo_jogador
+        self.nome_jogador: str = nome_jogador
+        self.saldo_atual: int = SALDO_INICIAL
 
     def pular(self, numero_dado: int) -> int:
         """
@@ -46,10 +45,17 @@ class Jogador:
         """
         print(f'{self} pulando: {numero_dado} casas')
         return numero_dado
+    
+    def comprar(self, valor_compra: int=0) -> None:
+        if self.saldo_atual >= valor_compra:
+            self.saldo_atual = self.saldo_atual - valor_compra
+            self.tipo_jogador
+            return
+        print(f'Nao possivel comprar {self}')
         
     def __str__(self) -> str:
-        return 'Jogador: {} Tipo: {}'.format(self.nome_jogador, 
-                                        self.tipo_jogador.value['tipo'])
+        return 'Jogador: {} Tipo: {} Saldo: {}'.format(self.nome_jogador, 
+                                        self.tipo_jogador.value['tipo'], self.saldo_atual)
         
     def __repr__(self) -> str:
         return super().__str__()

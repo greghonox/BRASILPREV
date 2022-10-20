@@ -2,6 +2,10 @@
     Configurações do jogo.
 """
 
+from random import choice, randint
+from typing import Dict
+from enum import Enum
+
 
 SALDO_INICIAL: int = 300
 PROPRIEDADES: int = 20
