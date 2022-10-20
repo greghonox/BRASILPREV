@@ -76,3 +76,22 @@ class TestBancoImobiliario(TestCase):
             next(cidade)
             print('-' * 100)
             banco.comprar_propriedade(jogador)
+
+    def test_comprar_propriedade_ate_zerar(self) -> None:
+        """
+            Compra propriedade.
+        """
+        jogador_cauteloso = TipoJogar.cauteloso
+        cidade = CidadeImobiliaria()
+        jogador = Jogador(jogador_cauteloso)
+        banco = BancoImobiliario([jogador], cidade)
+        TIMEOUT = 1000
+        for _ in cidade:
+            print('-' * 100)
+            if jogador.saldo_atual <= 0 or TIMEOUT == 0:
+                self.assertEqual(TIMEOUT, 0)
+                break
+            if banco.comprar_propriedade(jogador_cauteloso):
+                print(_, '**************')
+            TIMEOUT -= 1
+            

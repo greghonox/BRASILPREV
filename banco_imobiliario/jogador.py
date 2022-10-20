@@ -51,6 +51,7 @@ class Jogador:
         valor_compra = cidade.propriedade_atual['venda']
         if self.saldo_atual >= valor_compra:
             if self.tipo_jogador.comprar_impulsivo():
+                cidade.propriedade_atual['vendida'] = True
                 self.saldo_atual = self.saldo_atual - valor_compra
                 print(f'Compra feita no valor {valor_compra} {self}')
                 return True
@@ -61,6 +62,7 @@ class Jogador:
         reserva = cidade.propriedade_atual['venda']
         if self.saldo_atual >= reserva:
             if self.tipo_jogador.comprar_cauteloso(reserva, saldo_atual):
+                cidade.propriedade_atual['vendida'] = True
                 self.saldo_atual = self.saldo_atual - reserva
                 print(f'Compra feita no valor {reserva} {self}')
                 return True
@@ -86,6 +88,7 @@ class Jogador:
         valor_aluguel = cidade.propriedade_atual['alugar']
         if self.saldo_atual >= valor_aluguel:
             if self.tipo_jogador.comprar_exigente(valor_aluguel):
+                cidade.propriedade_atual['vendida'] = True
                 self.saldo_atual = self.saldo_atual - valor_aluguel
                 print(f'Compra feita no valor {valor_aluguel} {self}')
                 return True
