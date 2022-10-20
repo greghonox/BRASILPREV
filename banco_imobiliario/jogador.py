@@ -14,7 +14,7 @@ class TipoJogar(Enum):
 
     def comprar_cauteloso(self, reserva: int) -> bool:
         """Implementa o tipo de compra"""
-        resposta = reserva >= self.cauteloso.value['compra']        
+        resposta = reserva <= self.cauteloso.value['compra']        
         print(f'tipo compra cauteloso: {resposta}')
         return resposta
 
