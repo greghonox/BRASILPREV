@@ -1,37 +1,59 @@
 from banco_imobiliario.jogador import Jogador, TipoJogar
 from unittest import TestCase
+from unittest.mock import MagicMock
 
 
 class TestJogador(TestCase):
         
-    def test_comprar_impulsivo(self) -> None:
+    def test_comprar_impulsivo_saldo_ok(self) -> None:
         """Testa a compras"""
         tipo_jogador = TipoJogar.impulsivo
         jogador = Jogador(tipo_jogador)
-        self.assertTrue(jogador.tipo_jogador.comprar_impulsivo())
+        self.assertTrue(jogador.comprar_impulsivo(FAKE_CIDADE(10, 100)))
 
-    def test_comprar_cauteloso(self) -> None:
+    def test_comprar_impulsivo_saldo_insuficiente(self) -> None:
         """Testa a compras"""
-        reserva = 80
+        tipo_jogador = TipoJogar.impulsivo
+        jogador = Jogador(tipo_jogador)
+        self.assertFalse(jogador.comprar_impulsivo(FAKE_CIDADE(10, 301)))
+
+    def test_comprar_cauteloso_saldo_ok(self) -> None:
+        """Testa a compras"""
         tipo_jogador = TipoJogar.cauteloso
         jogador = Jogador(tipo_jogador)
-        self.assertTrue(jogador.tipo_jogador.comprar_cauteloso(reserva))
-        self.assertFalse(jogador.tipo_jogador.comprar_cauteloso(reserva - 1))
+        self.assertTrue(jogador.comprar_cauteloso(FAKE_CIDADE(10, 80)))
 
-    def test_comprar_aleatorio(self) -> None:
+    def test_comprar_cauteloso_saldo_insuficiente(self) -> None:
+        """Testa a compras"""
+        tipo_jogador = TipoJogar.cauteloso
+        jogador = Jogador(tipo_jogador)     
+        self.assertFalse(jogador.comprar_cauteloso(FAKE_CIDADE(10, 301)))
+
+    def test_comprar_aleatorio_saldo_ok(self) -> None:
         """Testa a compras"""
         tipo_jogador = TipoJogar.aleatorio
         jogador = Jogador(tipo_jogador)
-        jogador.tipo_jogador.comprar_aleatorio()   
+        jogador.comprar_aleatorio(FAKE_CIDADE(10, 200))   
 
-    def test_comprar_exigente(self) -> None:
+    def test_comprar_aleatorio_saldo_insuficiente(self) -> None:
         """Testa a compras"""
-        valor_aluguel = 50
+        tipo_jogador = TipoJogar.aleatorio
+        jogador = Jogador(tipo_jogador)
+        self.assertFalse(jogador.comprar_aleatorio(FAKE_CIDADE(10, 301)) )
+        
+    def test_comprar_exigente_saldo_ok(self) -> None:
+        """Testa a compras"""
         tipo_jogador = TipoJogar.exigente
         jogador = Jogador(tipo_jogador)
-        self.assertTrue(jogador.tipo_jogador.comprar_exigente(valor_aluguel))               
-        self.assertFalse(jogador.tipo_jogador.comprar_exigente(valor_aluguel - 1))               
-                    
+        self.assertTrue(jogador.comprar_exigente(FAKE_CIDADE(50, 10)))               
+        self.assertFalse(jogador.comprar_exigente(FAKE_CIDADE(49, 10)))               
+
+    def test_comprar_exigente_saldo_insuficiente(self) -> None:
+        """Testa a compras"""
+        tipo_jogador = TipoJogar.exigente
+        jogador = Jogador(tipo_jogador)
+        self.assertFalse(jogador.comprar_exigente(FAKE_CIDADE(301, 10)))
+                
     def test_pular_impulsivo(self) -> None:
         """Testa a compraspular impulsivo"""
         tipo_jogador = TipoJogar.impulsivo
@@ -55,3 +77,11 @@ class TestJogador(TestCase):
         tipo_jogador = TipoJogar.exigente
         jogador = Jogador(tipo_jogador)
         jogador.pular(7)        
+        
+
+def FAKE_CIDADE(alugar,
+                venda):
+    cidade_mock = MagicMock()
+    cidade_mock.propriedade_atual = {'propriedade': 1,
+                            'alugar': alugar, 'venda': venda}
+    return cidade_mock
