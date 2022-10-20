@@ -1,7 +1,6 @@
-from random import randint
+from random import choice, randint
 from typing import Dict
 from enum import Enum
-
 
 class TipoJogar(Enum):
     impulsivo: Dict = {'tipo': 'impulsivo', 'compra': 100}
@@ -9,6 +8,22 @@ class TipoJogar(Enum):
     aleatorio: Dict = {'tipo': 'aleatorio', 'compra': 0}
     exigente: Dict = {'tipo': 'exigente', 'compra': 50}
     
+    def comprar_impulsivo(self) -> bool:
+        """Implementa o tipo de compra"""
+        return True
+
+    def comprar_cauteloso(self, reserva: int) -> bool:
+        """Implementa o tipo de compra"""
+        return reserva >= self.cauteloso.value['compra']        
+
+    def comprar_aleatorio(self) -> bool:
+        """Implementa o tipo de compra"""
+        return choice([True, False])
+
+    def comprar_exigente(self, valor_aluguel: int) -> bool:
+        """Implementa o tipo de compra"""
+        return valor_aluguel >= self.exigente.value['compra']
+
             
 class Jogador:
     def __init__(self, tipo_jogador: TipoJogar, nome_jogador: str=f'Jogador {randint(1, 100)}') -> None:
