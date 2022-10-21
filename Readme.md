@@ -28,6 +28,18 @@ python main.py > saida.txt
 ```
 ### *O comando acima não é necessário usar* `> saida.txt`
 
+## Utilizando o Makefile
+#### Makefile foi criado para ambientes unix e facilitam a execução das etapas listada abaixo:
+#### 1. rodar `make run`
+#### 2. testar `make tests`
+#### 3. limpar ambiente `make clean_pycache`
+
+### `Para rodar execute com makefile em ambiente unix`:
+
+```python
+make run
+```
+
 ## Deficies tecnicos
 #### 1. Se deixar o jogador ficar negativo fica disparando na direção estranha e só um jogador ganha.
 #### 2. Se continuar com a regra de negativo, muitas vezes o jogo fica em loop até timeout.
