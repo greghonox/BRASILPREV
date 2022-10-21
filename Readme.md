@@ -16,6 +16,16 @@
 ## Saida do projeto 
 [Link para txt](https://files.fm/u/5zvmzf477)
 
+## Como rodar o projeto?!
+
+```python
+git clone git@github.com:greghonox/BRASILPREV.git
+cd BRASILPREV
+python main.py > saida.txt
+```
+
+### *O comando acima não é necessário usar* `> saida.txt`
+
 ## Um rascunho da saida abaixo
 ``` python
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
