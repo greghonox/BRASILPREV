@@ -23,5 +23,4 @@ if __name__ == '__main__':
     for _ in range(300):
         banco = gerar_jogor()
         banco.main()
-        input('Pressione enter para acompanhar nova jogada!')
-        del banco
+        # input('Pressione enter para acompanhar nova jogada!')
