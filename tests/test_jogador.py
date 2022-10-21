@@ -21,13 +21,13 @@ class TestJogador(TestCase):
         """Testa a compras"""
         tipo_jogador = TipoJogar.cauteloso
         jogador = Jogador(tipo_jogador)
-        self.assertTrue(jogador.comprar_cauteloso(FAKE_CIDADE(10, 80)))
+        self.assertTrue(jogador.comprar_cauteloso(FAKE_CIDADE(10, 80), 300))
 
     def test_comprar_cauteloso_saldo_insuficiente(self) -> None:
         """Testa a compras"""
         tipo_jogador = TipoJogar.cauteloso
         jogador = Jogador(tipo_jogador)     
-        self.assertFalse(jogador.comprar_cauteloso(FAKE_CIDADE(10, 301)))
+        self.assertFalse(jogador.comprar_cauteloso(FAKE_CIDADE(10, 301), 0))
 
     def test_comprar_aleatorio_saldo_ok(self) -> None:
         """Testa a compras"""
@@ -39,7 +39,7 @@ class TestJogador(TestCase):
         """Testa a compras"""
         tipo_jogador = TipoJogar.aleatorio
         jogador = Jogador(tipo_jogador)
-        self.assertFalse(jogador.comprar_aleatorio(FAKE_CIDADE(10, 301)) )
+        self.assertFalse(jogador.comprar_aleatorio(FAKE_CIDADE(10, 301)))
         
     def test_comprar_exigente_saldo_ok(self) -> None:
         """Testa a compras"""

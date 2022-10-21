@@ -46,9 +46,9 @@ class TestBancoImobiliario(TestCase):
         tipo_jogador = TipoJogar.aleatorio
         jogadores = [Jogador(tipo_jogador, 'test 0')]        
         cidade = CidadeImobiliaria()
-        
+        next(cidade)
         banco = BancoImobiliario(jogadores, cidade)
-        resposta = banco.verificar_propriedade_vendida(0)
+        resposta = banco.verificar_propriedade_vendida()
         self.assertFalse(resposta)
                     
     def test_comprar_propriedade(self) -> None:
@@ -94,4 +94,10 @@ class TestBancoImobiliario(TestCase):
             if banco.comprar_propriedade(jogador_cauteloso):
                 print(_, '**************')
             TIMEOUT -= 1
-            
+    
+    def test_avancar_propriedade(self) -> None:
+        mock = MagicMock()
+        cidade = CidadeImobiliaria()
+        banco = BancoImobiliario(mock, mock)
+        for _ in cidade:
+            banco.verificar_estado_jogo()
