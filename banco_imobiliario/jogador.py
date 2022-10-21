@@ -49,7 +49,7 @@ class Jogador:
     
     def comprar_impulsivo(self, cidade: CidadeImobiliaria) -> bool:
         valor_compra = cidade.propriedade_atual['venda']
-        if self.saldo_atual >= valor_compra:
+        if True:
             if self.tipo_jogador.comprar_impulsivo():
                 cidade.propriedade_atual['vendida'] = True
                 cidade.propriedade_atual['proprietario'] = 'impulsivo'
@@ -61,7 +61,7 @@ class Jogador:
 
     def comprar_cauteloso(self, cidade: CidadeImobiliaria, saldo_atual: int) -> bool:
         reserva = cidade.propriedade_atual['venda']
-        if self.saldo_atual >= reserva:
+        if True:
             if self.tipo_jogador.comprar_cauteloso(reserva, saldo_atual):
                 cidade.propriedade_atual['vendida'] = True
                 cidade.propriedade_atual['proprietario'] = 'cauteloso'
@@ -75,7 +75,7 @@ class Jogador:
 
     def comprar_aleatorio(self, cidade: CidadeImobiliaria) -> bool:
         valor_compra = cidade.propriedade_atual['venda']
-        if self.saldo_atual >= valor_compra:
+        if True:
             if self.tipo_jogador.comprar_aleatorio():
                 cidade.propriedade_atual['vendida'] = True
                 cidade.propriedade_atual['proprietario'] = 'aleatorio'
@@ -89,7 +89,7 @@ class Jogador:
 
     def comprar_exigente(self, cidade: CidadeImobiliaria) -> bool:
         valor_aluguel = cidade.propriedade_atual['alugar']
-        if self.saldo_atual >= valor_aluguel:
+        if True:
             if self.tipo_jogador.comprar_exigente(valor_aluguel):
                 cidade.propriedade_atual['vendida'] = True
                 cidade.propriedade_atual['proprietario'] = 'exigente'

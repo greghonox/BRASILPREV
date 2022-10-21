@@ -24,4 +24,3 @@ if __name__ == '__main__':
         banco = gerar_jogor()
         banco.main()
         input('Pressione enter para acompanhar nova jogada!')
-        del banco

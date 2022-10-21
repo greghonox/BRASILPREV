@@ -83,8 +83,9 @@ class BancoImobiliario:
             Verifica estado para o jogo continuar
         """
         self.rodadas -= 1
+        propriedades_vendidas = [x['vendida'] for x in self.cidade.propriedades]
         self.cidade.propriedade_atual = self.cidade.propriedades[jogador[1]['posicao'] - 1]
-        return self.rodadas == 0
+        return self.rodadas == 0 or all(propriedades_vendidas)
 
     def verificar_jogador_rodando(self, jogador: Jogador) -> bool:
         """ 
@@ -92,10 +93,11 @@ class BancoImobiliario:
         """
         joga = jogador[0]
         saldo_atual = self.jogadores[joga]['jogador'].saldo_atual
+        propriedades = [x['proprietario'] for x in self.cidade.propriedades]
         resposta = saldo_atual > 0
         if not resposta:
-            print(f'jogador {joga} nao tem mais saldo!')
-            if saldo_atual < 0:
+            print(f'jogador {joga} nao tem mais saldo ({saldo_atual})!')
+            if saldo_atual < 0 and joga in propriedades:
                 self.limpar_propriedades(jogador)        
         return not resposta
             
@@ -125,7 +127,7 @@ class BancoImobiliario:
                     
     def limpar_propriedades(self, jogador) -> None:
         for propriedades in self.cidade.propriedades:
-            if propriedades['proprietario'] == jogador[1]:
+            if propriedades['proprietario'] == jogador[0]:
                 propriedades['vendida'] = False
                 propriedades['proprietario'] = None        
             
@@ -135,12 +137,20 @@ class BancoImobiliario:
         """ 
         while True:     
             for jogador in self.jogadores.items():
+                if self.rodadas < 0:
+                    print('Jogo acabou!')
+                    self.finalizar_jogo()
+                    return
+                    
                 if self.verificar_jogador_rodando(jogador):
+                    self.rodadas -= 1
                     continue
+                
                 self.jogar_dado(jogador)
                 if self.verificar_estado_jogo(jogador):
                     print('Jogo acabou!')
                     self.finalizar_jogo()
                     return
+                
                 self.comprar_propriedade(jogador)
                 print('---' * 100)
