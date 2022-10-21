@@ -24,6 +24,12 @@ cd BRASILPREV
 python main.py > saida.txt
 ```
 
+## Deficies tecnicos
+## 1. Se deixar o jogador ficar negativo fica disparando na direção estranha e só um jogador ganha.
+## 2. Se continuar com a regra de negativo, muitas vezes o jogo fica em loop até timeout.
+## 3. Precisava aumentar a cobertura de testes.
+## 4. Faltou tempo para resolver os casos anteriores.
+
 ### *O comando acima não é necessário usar* `> saida.txt`
 
 ## Um rascunho da saida abaixo
