@@ -2,14 +2,17 @@
 ### Projeto desenvolvido para cumprir desafio.
 
 ## Para resolver o problema dessa simulação foi utilizado:
-### 1. Testes unitários.
-### 2. Arquitetura de projeto singleton.
-### 3. Logico github com suas branch's.
-### 4. Integração com ambiente unix.
-### 5. Makefile
+#### 1. Testes unitários.
+#### 2. Arquitetura de projeto singleton.
+#### 3. Logico github com suas branch's.
+#### 4. Integração com ambiente unix.
+#### 5. Makefile
 
+## Tela dos testes e ambiente de desenvolviemento
 ![img](https://github.com/greghonox/BRASILPREV/blob/main/resources/tela.png)
 
+## Historico de desenvolvimento
+![img](https://github.com/greghonox/BRASILPREV/blob/main/resources/grafico.png)
 ## Projeto foi desenvolvido com base no desafio pdf
 ### [Desafio pdf esta aqui!](https://github.com/greghonox/BRASILPREV/blob/main/resources/%20Desafio%20T%C3%A9cnico%20-%20Python-%20SPRINT%20%2331%20(1).pdf)
 
@@ -23,15 +26,13 @@ git clone git@github.com:greghonox/BRASILPREV.git
 cd BRASILPREV
 python main.py > saida.txt
 ```
-
-## Deficies tecnicos
-## 1. Se deixar o jogador ficar negativo fica disparando na direção estranha e só um jogador ganha.
-## 2. Se continuar com a regra de negativo, muitas vezes o jogo fica em loop até timeout.
-## 3. Precisava aumentar a cobertura de testes.
-## 4. Faltou tempo para resolver os casos anteriores.
-
 ### *O comando acima não é necessário usar* `> saida.txt`
 
+## Deficies tecnicos
+#### 1. Se deixar o jogador ficar negativo fica disparando na direção estranha e só um jogador ganha.
+#### 2. Se continuar com a regra de negativo, muitas vezes o jogo fica em loop até timeout.
+#### 3. Precisava aumentar a cobertura de testes.
+#### 4. Faltou tempo para resolver os casos anteriores.
 ## Um rascunho da saida abaixo
 ``` python
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
